@@ -142,7 +142,7 @@ public class ParrilllaTelevisiva extends AppCompatActivity {
     }
     private class DescargarXML2 extends AsyncTask<String, Void, Void> {
         String todo="" ;
-        ArrayAdapter<String> adapter;
+        int algo;
         List<String> list;
 
         @Override
@@ -160,7 +160,7 @@ public class ParrilllaTelevisiva extends AppCompatActivity {
             super.onPostExecute(unused);
             progressDialog.dismiss();
             AlertDialog.Builder builder=new AlertDialog.Builder(ParrilllaTelevisiva.this);
-            builder.setTitle("Programacion del canal");
+            builder.setTitle("Programacion del canal "+nombre.get(algo));
             for(int i =0;i<Canales.size();i++){
                 builder.setMessage("\n"+Canales.get(i));
             }
@@ -183,6 +183,7 @@ public class ParrilllaTelevisiva extends AppCompatActivity {
         protected Void doInBackground(String... strings) {
             String script = strings[0];
             int posicion=Integer.parseInt(strings[1]);
+            algo=posicion;
             URL url;
             HttpURLConnection httpURLConnection;
 
